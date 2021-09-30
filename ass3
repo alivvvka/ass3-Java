@@ -1,0 +1,62 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Story bb = new Question1(new Question2(new Bad_Blood()));
+
+        System.out.println(bb.getText());
+    }
+
+    public interface Story{
+        String getText();
+    }
+
+    public interface AddQuestion extends Story{
+        String getText();
+    }
+
+    public static class Bad_Blood implements Story{
+
+        @Override
+        public String getText() {
+            return "     David and Emma gazed at each other across the table. The young couple were content: the meal was delicious, the candlelight was soft and the music captured the moment perfectly." +
+                    "\n" +
+                    "David looked at Emma's beautiful smile. All the pain of his last break-up, all his doubts and fears about love melted away. His hand reached out and touched hers nervously." +
+                    "\n" +
+                    "'I have something I want to ask you.' David searched her eyes to see if she guessed what was coming." +
+                    "\n" +
+                    "Her smile was reassuring. She squeezed his hand. 'You needn't worry. Whatever it is, I'm sure I'll say yes!'" +
+                    "\n" +
+                    "A huge wave of excitement went through him as he prepared to ask the most important question of his life." +
+                    "\n" +
+                    "From the corner of the restaurant, a strange man watched them. He sat, stiff and unmoving, at his table, pretending to read a menu. But all the while, he stared with cold eyes at the young couple.";
+        }
+    }
+
+    public static class Question1 implements AddQuestion{
+        private Story story;
+
+        public Question1(Story story){
+            this.story = story;
+        }
+
+        @Override
+        public String getText() {
+            return story.getText() + "\n\n- Who is David?";
+        }
+    }
+
+    public static class Question2 implements AddQuestion{
+        private Story story;
+
+        public Question2(Story story){
+            this.story = story;
+        }
+
+        @Override
+        public String getText() {
+            return story.getText() + "\n\n- Who is Emma?";
+        }
+    }
+}
